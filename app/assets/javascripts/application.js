@@ -12,4 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require shared/oauth
+//= require underscore
+//= require trie_dictionary
+//= require category_search
+//
+//= require posts

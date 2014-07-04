@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :external_accounts
+  has_many :posts
 
   validate :has_valid_credentials
 

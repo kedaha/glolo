@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   # omniauth gives:
   ## auth/:provider
   ## callback url is /auth/:provider/callback
@@ -6,9 +7,25 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :index] do
     resources :registrations, only: [:new]
+    resources :posts
+  end
+
+  resources :posts, only: [:index, :show]
+  resources :categories, only: [:index] do
+    collection do
+      post :learn_keywords
+    end
+  end
+  resources :keywords, only: [] do
+    collection do
+      get :find_categories
+      get :category_search_hash
+    end
   end
 
   resources :sessions, only: [:new]
+  get '/signin', to: 'sessions#new'
+  get '/signout', to: 'sessions#destroy'
 
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/failure', to: 'sessions#error'

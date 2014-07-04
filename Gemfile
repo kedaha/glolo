@@ -1,13 +1,17 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.1.1'
-gem 'mysql2'
-gem 'sass-rails', '~> 4.0.3'
-gem 'uglifier', '>= 1.3.0'
+
+gem 'active_model_serializers'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'slim-rails'
 gem 'compass-rails'
 gem 'jquery-rails'
+gem 'mysql2'
+gem "paperclip", '~> 4.1'
+gem 'sass-rails', '~> 4.0.3'
+gem 'slim-rails'
+gem 'uglifier', '>= 1.3.0'
+gem 'underscore-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -29,6 +33,7 @@ gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'awesome_print'
+  gem 'jasmine-rails'
   gem 'pry-rails'
   gem 'pry-remote'
   gem 'rspec-rails'

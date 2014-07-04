@@ -1,0 +1,22 @@
+#new-post-item-container
+  h1 New Item Post
+  / user has text box to search for categories
+  / categories are a big list on the page
+  / as user types 'desk', the list smartly narrows to 'furniture'
+  / they can either arrow down in dropdown autocomplete list,
+  / or pick from narrowed list on page
+
+  = label_tag "category search"
+  input#category-search-input type="text"
+  #new-post-categories.flex-container
+
+  = form_for [current_user, @post] do |f|
+    = f.fields_for :item do |ff|
+      = ff.text_field :height
+      = ff.label "height"
+      br
+      = ff.text_field :width
+      = ff.label "width"
+      br
+      = ff.text_field :length
+      = ff.label "length"

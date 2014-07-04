@@ -2,7 +2,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: chi_site2_development
+  database: glolo_development
   pool: 5
   username: root
   password:
@@ -11,7 +11,7 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: chi_site2_test
+  database: glolo_test
   pool: 5
   username: root
   password:
@@ -20,7 +20,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: chi_site2_production
+  database: glolo_production
   pool: 5
   username: root
   password:

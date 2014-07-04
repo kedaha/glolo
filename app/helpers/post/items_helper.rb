@@ -1,0 +1,2 @@
+module Post::ItemsHelper
+end

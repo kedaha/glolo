@@ -1,0 +1,54 @@
+* {
+  box-sizing: border-box;
+}
+
+.flex-container {
+  display: flex;
+
+  // flex-direction: row | row-reverse | column | column-reverse;
+  // flex-direction: row-reverse;
+
+  // flex-wrap: nowrap | wrap | wrap-reverse;
+  flex-wrap: wrap;
+
+  // flex-flow: <‘flex-direction’> || <‘flex-wrap’> shorthand for both...
+
+  // justify-content: flex-start | flex-end | center | space-between | space-around;
+  justify-content: flex-start;
+  // sort of like justifty-content but for the cross axis
+  // align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+  // align-content: center;
+
+  // similar to align-content.. e.g. align-items:center does the same as align-content: space-around
+  // align-items: flex-start | flex-end | center | baseline | stretch
+  align-items: flex-start;
+
+  background: $color-background;
+  width: 100%;
+  max-width: 960px;
+  height: 600px;
+}
+
+.flex-item {
+  // order: <integer>
+  // flex-grow: <number> // proportion in relation to other flex grow numbers... default 0
+  // flex-shrink: <number> // like flex grow...
+  // flex-basis: <length> | auto // default size of an element before the space is distributed
+  // align-self: auto | flex-start | flex-end | center | baseline | stretch;
+
+  // margin: auto // hack to center item on both axes (i think i should use flex properties instead..)
+  height: 100px;
+  width: 100px;
+
+  &.hidden {
+    width: 0 !important;
+    transition: width 0.2s ease-in-out;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  &.deprioritized {
+    @include opacity(0.6);
+    order: 100
+  }
+}

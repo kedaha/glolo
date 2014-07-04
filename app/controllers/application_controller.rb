@@ -4,8 +4,20 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   private
+
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    return @current_user if @current_user
+
+    # for development: if user was deleted without deleting session
+    user = nil
+
+    if session[:user_id]
+      user = User.find_by id: session[:user_id]
+      session[:user_id] = nil if user.nil?
+    end
+
+    @current_user ||= user
   end
+
   helper_method :current_user
 end
