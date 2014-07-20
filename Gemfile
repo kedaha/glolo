@@ -5,13 +5,16 @@ gem 'rails', '4.1.1'
 gem 'active_model_serializers'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'compass-rails'
+gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'mysql2'
+gem "neat", "~> 1.5.1"
+gem "normalize-rails"
 gem "paperclip", '~> 4.1'
+gem "rails-backbone"
 gem 'sass-rails', '~> 4.0.3'
 gem 'slim-rails'
 gem 'uglifier', '>= 1.3.0'
-gem 'underscore-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

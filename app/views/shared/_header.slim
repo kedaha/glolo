@@ -1,8 +1,12 @@
-#header
+.header
   - if current_user
-    div Hi #{current_user.full_name}, #{current_user.screen_name}
-    div
-      = link_to "Sign out", signout_path
+    .header--user-greeting Hi #{[current_user.full_name, current_user.screen_name].reject(&:blank?).join(',')}
+    .header--user-sign-in-out
+      = link_to signout_path do
+        span.header--user-sign-in-out-text Sign Out
+        i.fa.fa-sign-out
   - else
-    div
-      = link_to "Sign in", signin_path
+    .header--user-sign-in-out
+      = link_to signout_path do
+        span.header--user-sign-in-out-text Sign In
+        i.fa.fa-sign-in

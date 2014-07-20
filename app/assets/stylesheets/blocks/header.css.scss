@@ -1,0 +1,23 @@
+.header {
+  @include outer-container;
+  width: 100%;
+  background-color: $color-background-highlight;
+  @include section-padding;
+  @include section-shadow;
+  margin-bottom: $margin-section;
+}
+
+.header--user-greeting {
+  @include span-columns(6 of 12);
+  font-weight: bold;
+}
+
+.header--user-sign-in-out {
+  @include span-columns(6 of 12);
+  @include omega();
+  text-align: right;
+}
+
+.header--user-sign-in-out-text {
+  margin-right: 10px;
+}

@@ -1,6 +1,7 @@
-class Category < ActiveRecord::Base
-  has_many :categories_keywords
-  has_many :keywords, through: :categories_keywords
+class ItemCategory < ActiveRecord::Base
+  has_and_belongs_to_many :items
+  has_many :item_categories_keywords
+  has_many :keywords, through: :item_categories_keywords
 
   validates :name, uniqueness: true
 
@@ -10,7 +11,7 @@ class Category < ActiveRecord::Base
     keyword = Keyword.find_by(name: name)
 
     if keyword
-      link = categories_keywords.find_or_create_by(keyword_id: keyword.id)
+      link = item_categories_keywords.find_or_create_by(keyword_id: keyword.id)
       link.strength += 1
       link.save!
     else

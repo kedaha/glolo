@@ -1,0 +1,20 @@
+.content {
+  @include outer-container;
+  min-height: 800px;
+  background-color: $color-background;
+}
+
+.content--title {
+  background-color: $color-background-highlight;
+  @include section-padding;
+  @include section-shadow;
+  margin-bottom: 1px;
+  color: $color-text-faded;
+}
+
+.content--section {
+  background-color: $color-background-highlight;
+  @include section-padding;
+  @include section-shadow;
+  margin-bottom: $margin-section;
+}

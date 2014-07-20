@@ -7,15 +7,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :index] do
     resources :registrations, only: [:new]
-    resources :posts
   end
 
-  resources :posts, only: [:index, :show]
-  resources :categories, only: [:index] do
-    collection do
-      post :learn_keywords
-    end
-  end
+  resources :posts
+  resources :post_categories, only: [:index]
   resources :keywords, only: [] do
     collection do
       get :find_categories

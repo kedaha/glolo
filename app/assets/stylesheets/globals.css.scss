@@ -1,0 +1,33 @@
+// neat resets box-sizing: border-box
+$color-text: #000;
+$color-text-faded: #888;
+
+$color-background: #f5f5f5;
+$color-background-highlight: #fff;
+$color-background-callout: rgb(108, 205, 105);
+
+$color-border: #f5f5f5;
+$color-border-highlight: #ccc;
+
+$margin-section: 40px;
+
+@mixin section-shadow {
+  @include box-shadow(0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24));
+}
+
+@mixin section-padding {
+  padding: 15px 25px;
+}
+
+a, a:hover {
+  color: $color-text;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: $color-background;
+}

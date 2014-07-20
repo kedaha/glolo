@@ -1,0 +1,6 @@
+.footer {
+  @include outer-container;
+  width: 100%;
+  background-color: $color-background-highlight;
+  @include section-padding;
+}

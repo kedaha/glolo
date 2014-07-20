@@ -7,62 +7,33 @@ class CreatePostsAndItems < ActiveRecord::Migration
       t.integer :category_id
       t.index :category_id
 
+      t.string :title
+
       t.integer :contact_profile_id
 
       t.timestamps
     end
 
-    create_table :categories do |t|
+    create_table :post_categories do |t|
       t.string :name
-
-      t.timestamps
-    end
-
-    create_table :categories_posts do |t|
-      t.integer :post_id
-      t.index :post_id
-
-      t.integer :category_id
-      t.index :category_id
-
-      t.integer :strength
-
-      t.timestamps
-    end
-
-    create_table :categories_keywords do |t|
-      t.integer :keyword_id
-      t.index :keyword_id
-
-      t.integer :category_id
-      t.index :category_id
-
-      t.integer :strength, default: 0, null: false
-
-      t.timestamps
-    end
-
-    create_table :keywords do |t|
-      t.string :name
-
       t.timestamps
     end
 
     create_table :pickup_locations_posts do |t|
-      t.integer :post_id
+      t.integer :post_id, null: false
       t.index :post_id
 
-      t.integer :location_id
+      t.integer :location_id, null: false
       t.index :location_id
 
       t.timestamps
     end
 
     create_table :delivery_locations_posts do |t|
-      t.integer :post_id
+      t.integer :post_id, null: false
       t.index :post_id
 
-      t.integer :location_id
+      t.integer :location_id, null: false
       t.index :location_id
 
       t.integer :radius
@@ -94,25 +65,25 @@ class CreatePostsAndItems < ActiveRecord::Migration
     end
 
     create_table :option_types do |t|
-      t.string :name
+      t.string :name, null: false
 
       t.timestamps
     end
 
     create_table :option_values do |t|
-      t.integer :option_type_id
+      t.integer :option_type_id, null: false
       t.index :option_type_id
 
-      t.string :value
+      t.string :value, null: false
 
       t.timestamps
     end
 
     create_table :items_option_values do |t|
-      t.integer :option_value_id
+      t.integer :option_value_id, null: false
       t.index :option_value_id
 
-      t.integer :item_id
+      t.integer :item_id, null: false
       t.index :item_id
 
       t.timestamps
@@ -124,11 +95,29 @@ class CreatePostsAndItems < ActiveRecord::Migration
     end
 
     create_table :item_categories_items do |t|
-      t.integer :item_id
+      t.integer :item_id, null: false
       t.index :item_id
 
-      t.integer :category_id
-      t.index :category_id
+      t.integer :item_category_id, null: false
+      t.index :item_category_id
+
+      t.timestamps
+    end
+
+    create_table :item_categories_keywords do |t|
+      t.integer :keyword_id, null: false
+      t.index :keyword_id
+
+      t.integer :item_category_id, null: false
+      t.index :item_category_id
+
+      t.integer :strength, default: 0, null: false
+
+      t.timestamps
+    end
+
+    create_table :keywords do |t|
+      t.string :name, null: false
 
       t.timestamps
     end
@@ -142,23 +131,23 @@ class CreatePostsAndItems < ActiveRecord::Migration
     end
 
     create_table :item_groups_items do |t|
-      t.integer :item_id
+      t.integer :item_id, null: false
       t.index :item_id
 
-      t.integer :item_group_id
+      t.integer :item_group_id, null: false
       t.index :item_group_id
 
       t.timestamps
     end
 
     create_table :item_conditions do |t|
-      t.string :name
+      t.string :name, null: false
 
       t.timestamps
     end
 
     create_table :item_images do |t|
-      t.attachment :img
+      t.attachment :img, null: false
     end
   end
 end

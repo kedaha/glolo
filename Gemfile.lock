@@ -33,6 +33,9 @@ GEM
     arel (5.0.1.20140414130214)
     awesome_print (1.2.0)
     bcrypt (3.1.7)
+    bourbon (3.2.3)
+      sass (~> 3.2)
+      thor
     builder (3.2.2)
     capybara (2.2.1)
       mime-types (>= 1.16)
@@ -67,6 +70,7 @@ GEM
     daemons (1.1.9)
     database_cleaner (1.2.0)
     diff-lcs (1.2.5)
+    ejs (1.0.0)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.2)
@@ -79,6 +83,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffaker (1.24.0)
     ffi (1.9.3)
+    font-awesome-rails (4.2.0.0)
+      railties (>= 3.2, < 5.0)
     fssm (0.2.10)
     hashie (2.1.1)
     hike (1.2.3)
@@ -109,8 +115,12 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     mysql2 (0.3.16)
+    neat (1.5.1)
+      bourbon (>= 3.1)
+      sass (~> 3.2.19)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
+    normalize-rails (3.0.1)
     oauth2 (0.9.4)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -161,6 +171,10 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.1)
       sprockets-rails (~> 2.0)
+    rails-backbone (0.7.2)
+      coffee-script (~> 2.2.0)
+      ejs (~> 1.0.0)
+      railties (>= 3.1.0)
     railties (4.1.1)
       actionpack (= 4.1.1)
       activesupport (= 4.1.1)
@@ -245,7 +259,6 @@ GEM
     uglifier (2.5.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    underscore-rails (1.6.0)
     vegas (0.1.11)
       rack (>= 1.0.0)
     webmock (1.18.0)
@@ -268,16 +281,20 @@ DEPENDENCIES
   database_cleaner
   factory_girl_rails
   ffaker
+  font-awesome-rails
   jasmine-rails
   jbuilder (~> 2.0)
   jquery-rails
   mysql2
+  neat (~> 1.5.1)
+  normalize-rails
   omniauth-facebook
   omniauth-google-oauth2
   paperclip (~> 4.1)
   pry-rails
   pry-remote
   rails (= 4.1.1)
+  rails-backbone
   resque
   rspec-rails
   sass-rails (~> 4.0.3)
@@ -287,5 +304,4 @@ DEPENDENCIES
   spring
   thin
   uglifier (>= 1.3.0)
-  underscore-rails
   webmock

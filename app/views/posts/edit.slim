@@ -1,0 +1,19 @@
+.content
+  h1.content--title Your Post
+  #post.content--section
+    / user has text box to search for categories
+    / categories are a big list on the page
+    / as user types 'desk', the list smartly narrows to 'furniture'
+    / they can either arrow down in dropdown autocomplete list,
+    / or pick from narrowed list on page
+    #post-category
+
+    / if post category has items
+    #post-items
+
+  javascript:
+    $(function() {
+      Glo.router = new Glo.Routers.EditPostRouter({post: #{@post.to_json.html_safe}});
+      Backbone.history.start();
+      Glo.router.navigate(Glo.router.post.defaultStep(), {trigger: true})
+    });
