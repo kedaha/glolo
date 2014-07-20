@@ -1,4 +1,4 @@
-class @CategorySearch
+class @CategoryPickerView
   constructor: ($searchElement, $containerEl) ->
     self = @
     @$searchElement = $searchElement
@@ -9,14 +9,8 @@ class @CategorySearch
 
     @hidingSelector = 'deprioritized'
 
-    @getCategories  (data) ->
-      self.activeCategoryIds = _.pluck(data.categories, 'id')
-      self.fillCategoryView(data)
-      self.listenForCategoryChoice()
-      self.activateSearchElement()
-      self.retrieveKeywordsHash()
-
-    CategorySearch.addInstance(@)
+    @getCategories  (data) -> self.activate(data.categories)
+    CategoryPickerView.addInstance(@)
 
   $templateEl: ->
     @_$templateEl ||= $(
@@ -24,6 +18,13 @@ class @CategorySearch
         "<div class='category-content' data-category-content></div>" +
       "</div>"
     )
+
+  activate: (categories) ->
+    @activeCategoryIds = _.pluck(categories, 'id')
+    @fillCategoryView(categories)
+    @listenForCategoryChoice()
+    @activateSearchElement()
+    @retrieveKeywordsHash()
 
   searchVal: ->
     @$searchElement.val().trim()
@@ -34,9 +35,9 @@ class @CategorySearch
       url: "/categories"
       success: callback
 
-  fillCategoryView: (data) ->
+  fillCategoryView: (categories) ->
     self = @
-    _.each data.categories, (category) ->
+    _.each categories, (category) ->
       $categoryEl = self.$templateEl().clone().data("category-id", category.id)
       $categoryEl.find('[data-category-content]').text(category.name)
       self.$containerEl.append($categoryEl)
@@ -47,12 +48,14 @@ class @CategorySearch
     self = @
 
     @$categoryElements.on 'click', (event) ->
-      $el = $(event.target)
-      categoryId = $el.data("category-id")
+      categoryId = $(event.target).data("category-id")
+
       self.chooseCategory(categoryId)
       self.learnKeywords(categoryId)
 
   chooseCategory: (categoryId) ->
+    @resetSearch()
+
     # remove cateogory from picking view, put it in some chosen view
     # same with data
 
@@ -113,9 +116,9 @@ class @CategorySearch
   hideCategory: ($el) ->
     $el.addClass(@hidingSelector)
 
-CategorySearch.addInstance = (obj) ->
+CategoryPickerView.addInstance = (obj) ->
   @instances ||= []
   @instances.push(obj)
 
-CategorySearch.instance = ->
-  CategorySearch.instances[0]
+CategoryPickerView.instance = ->
+  CategoryPickerView.instances[0]

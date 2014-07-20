@@ -7,10 +7,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :index] do
     resources :registrations, only: [:new]
-    resources :posts
   end
 
-  resources :posts, only: [:index, :show]
+  resources :posts
   resources :categories, only: [:index] do
     collection do
       post :learn_keywords

@@ -14,6 +14,6 @@
 //= require jquery_ujs
 //= require underscore
 //= require trie_dictionary
-//= require category_search
 //
+//= require views/category_search
 //= require posts
