@@ -7,9 +7,14 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :index] do
     resources :registrations, only: [:new]
+    resources :posts, only: [:index]
   end
 
-  resources :posts
+  resources :posts do
+    member do
+      put :category
+    end
+  end
   resources :categories, only: [:index] do
     collection do
       post :learn_keywords
@@ -17,7 +22,6 @@ Rails.application.routes.draw do
   end
   resources :keywords, only: [] do
     collection do
-      get :find_categories
       get :category_search_hash
     end
   end
