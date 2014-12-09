@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20140614065414) do
   end
 
   add_index "categories_posts", ["category_id"], name: "index_categories_posts_on_category_id", using: :btree
-  add_index "categories_posts", ["post_id"], name: "index_categories_posts_on_post_id", using: :btree
+  add_index "categories_posts", ["post_id", "category_id"], name: "index_categories_posts_on_post_id_and_category_id", unique: true, using: :btree
 
   create_table "delivery_locations_posts", force: true do |t|
     t.integer  "post_id"
@@ -193,6 +193,7 @@ ActiveRecord::Schema.define(version: 20140614065414) do
     t.integer  "user_id",            null: false
     t.integer  "category_id"
     t.integer  "contact_profile_id"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

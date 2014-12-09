@@ -7,12 +7,14 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :index] do
     resources :registrations, only: [:new]
-    resources :posts, only: [:index]
+    resources :posts, only: [:index, :show]
   end
 
   resources :posts do
-    member do
-      put :category
+    resources :categories, only: [] do
+      member do
+        delete :remove
+      end
     end
   end
   resources :categories, only: [:index] do
@@ -25,6 +27,7 @@ Rails.application.routes.draw do
       get :category_search_hash
     end
   end
+  resources :categories_posts, only: [:create, :show, :destroy]
 
   resources :sessions, only: [:new]
   get '/signin', to: 'sessions#new'

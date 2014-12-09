@@ -1,8 +1,10 @@
 class Category < ActiveRecord::Base
   has_many :categories_keywords
   has_many :keywords, through: :categories_keywords
+  has_many :categories_posts
+  has_many :posts, through: :categories_posts
 
-  validates :name, uniqueness: true
+  validates :name, uniqueness: true, presence: true
 
   after_create :create_default_keywords
 

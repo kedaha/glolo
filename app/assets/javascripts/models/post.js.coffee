@@ -4,3 +4,6 @@
 
 glo.angular.factory 'Post', ->
   class glo.Models.Post extends glo.Models.Base
+    @current: null
+
+    categories: []

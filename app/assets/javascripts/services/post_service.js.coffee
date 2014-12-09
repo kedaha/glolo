@@ -3,7 +3,13 @@
 
 glo.angular.factory 'PostService', ['$http', 'Post', ($http, Post) ->
   {
-    putCategory: (id, successFunc, errorFunc, loadingFunc) ->
-      $http.put("/posts/#{id}/category.json").then successFunc
+    current: ->
+      $http(
+        method: "GET"
+        url: '/posts/current'
+      ).
+      success( (data) ->
+        Post.current.updateAttributes(data)
+      )
   }
 ]

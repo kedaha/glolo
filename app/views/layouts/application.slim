@@ -5,7 +5,9 @@ html ng-app="glo"
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
+    = yield :head
   body
     = render "shared/header"
+    = tag :div, id: "page-data", data: {content: @page_data.to_json}
     = yield
     = render "shared/footer"

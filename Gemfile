@@ -37,6 +37,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-remote'
   gem 'rspec-rails'
+  gem 'rspec-activemodel-mocks'
 end
 
 group :test do

@@ -1,4 +1,4 @@
-#new-post-item-container
+#edit-post ng-controller="EditPostCtrl"
   h1 New Item type Post
   / user has text box to search for categories
   / categories are a big list on the page
@@ -6,15 +6,20 @@
   / they can either arrow down in dropdown autocomplete list,
   / or pick from narrowed list on page
 
-  #new-post-categories ng-controller="NewPostCtrl"
+  #edit-post-categories ng-controller="EditPostCategoriesCtrl"
     = label_tag "category search"
     input#category-search-input type="text" ng-model="search"
 
     .flex-container
-      .flex-item.category-wrapper ng-repeat="category in activeCategories" data-category-id=""
-        .category-content data-category-content=""
+      .flex-item.category-wrapper ng-repeat="category in possibleNewCategories track by $index"  data-category-id=""
+        .category-content ng-click="addPostCategory(category)" data-category-content=""
           | {{ category.name }}
           | {{ category.goofName }}
+
+    ul
+      li ng-repeat="category in post.categories"
+        div ng-click="removePostCategory(category)"
+          | {{ category.name }}
 
     = form_for [current_user, @post] do |f|
       = f.fields_for :item do |ff|

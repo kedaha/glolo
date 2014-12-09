@@ -9,6 +9,8 @@ class CreatePostsAndItems < ActiveRecord::Migration
 
       t.integer :contact_profile_id
 
+      t.string :title
+
       t.timestamps
     end
 
@@ -20,7 +22,6 @@ class CreatePostsAndItems < ActiveRecord::Migration
 
     create_table :categories_posts do |t|
       t.integer :post_id
-      t.index :post_id
 
       t.integer :category_id
       t.index :category_id
@@ -29,6 +30,7 @@ class CreatePostsAndItems < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :categories_posts, [:post_id, :category_id], unique: true
 
     create_table :categories_keywords do |t|
       t.integer :keyword_id
