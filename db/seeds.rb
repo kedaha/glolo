@@ -1,4 +1,4 @@
-post_categories = %w( single_item job_post )
+post_categories = PostCategory::ACCEPTABLE_NAMES
 item_categories = {
   "furniture" => %w(furniture desks couches sofas chairs tables bookshelf shelf shelves armoire benches beds mattresses nightstand night stand),
   "appliances" => %w(appliances refrigerators freezers ovens washers dryers microwaves blenders juicers),

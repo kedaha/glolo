@@ -1,14 +1,14 @@
 class PostsController < ApplicationController
-  respond_to :json
-  respond_to :html, only: :index
+  respond_to :json, only: [:create, :update, :destroy]
+  respond_to :html, only: [:new, :edit]
 
   def new
-    @post = current_user.posts.build
+    @post = current_user.posts.find_by(completed_at: nil) || current_user.posts.create
     render :edit
   end
 
   def create
-    respond_with current_user.posts.create!(post_params)
+    render json: current_user.posts.create!(post_params)
   end
 
   def edit
@@ -16,17 +16,18 @@ class PostsController < ApplicationController
   end
 
   def update
-
+    post = current_user.posts.find(params[:id])
+    post.update_attributes!(post_params)
+    render json: post
   end
 
   def destroy
-    respond_with current_user.posts.find(params[:id]).destroy
+    render json: current_user.posts.find(params[:id]).destroy
   end
 
   private
 
   def post_params
-    permitted = %w(id title contact_profile_id)
-    params.require(:post).permit(permitted)
+    params.require(:post).permit([:title, :contact_profile_id, :category_id])
   end
 end

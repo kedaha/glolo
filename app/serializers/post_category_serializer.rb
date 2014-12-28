@@ -1,3 +1,3 @@
 class PostCategorySerializer < ActiveModel::Serializer
-  attributes :presentation, :id
+  attributes :name, :presentation, :id
 end

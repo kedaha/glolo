@@ -7,7 +7,14 @@ class CreatePostsAndItems < ActiveRecord::Migration
       t.integer :category_id
       t.index :category_id
 
+      t.integer :postable_id
+      t.index :postable_id
+      t.string :postable_type
+      t.index :postable_type
+
       t.string :title
+      t.datetime :completed_at
+      t.index :completed_at
 
       t.integer :contact_profile_id
 
@@ -16,6 +23,14 @@ class CreatePostsAndItems < ActiveRecord::Migration
 
     create_table :post_categories do |t|
       t.string :name
+      t.timestamps
+    end
+
+    create_table :post_item_sales do |t|
+      t.timestamps
+    end
+
+    create_table :post_jobs do |t|
       t.timestamps
     end
 
@@ -42,11 +57,14 @@ class CreatePostsAndItems < ActiveRecord::Migration
     end
 
     create_table :items do |t|
-      t.integer :post_id
-      t.index :post_id
-
       t.integer :user_id
       t.index :user_id
+
+      t.integer :holder_id
+      t.index :holder_id
+
+      t.integer :holder_type
+      t.index :holder_type
 
       t.string :title
       t.text :description

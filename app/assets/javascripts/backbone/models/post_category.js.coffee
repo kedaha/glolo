@@ -1,5 +1,6 @@
 class Glo.Models.PostCategory extends Backbone.Model
   paramRoot: 'post_category'
+  urlRoot: '/post_categories'
 
   defaults:
     presentation: null

@@ -17,11 +17,6 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   DatabaseCleaner.strategy = :transaction
-  config.before(:each) do
-    Category.delete_all
-    Keyword.delete_all
-    CategoriesKeyword.delete_all
-  end
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:

@@ -19,6 +19,10 @@ class ItemCategory < ActiveRecord::Base
     end
   end
 
+  def presentation
+    I18n.t("item_category.types.#{name}", default: name)
+  end
+
   private
 
   def create_default_keywords

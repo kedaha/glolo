@@ -11,7 +11,7 @@ gem 'mysql2'
 gem "neat", "~> 1.5.1"
 gem "normalize-rails"
 gem "paperclip", '~> 4.1'
-gem "rails-backbone"
+gem "rails-backbone", github: "codebrew/backbone-rails", branch: "master"
 gem 'sass-rails', '~> 4.0.3'
 gem 'slim-rails'
 gem 'uglifier', '>= 1.3.0'
@@ -46,7 +46,7 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
-  gem 'ffaker'
+  gem 'faker'
   gem 'selenium-webdriver'
   gem 'webmock'
 end

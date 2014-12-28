@@ -103,8 +103,9 @@ ActiveRecord::Schema.define(version: 20140614065414) do
   end
 
   create_table "items", force: true do |t|
-    t.integer  "post_id"
     t.integer  "user_id"
+    t.integer  "holder_id"
+    t.integer  "holder_type"
     t.string   "title"
     t.text     "description"
     t.integer  "length"
@@ -120,7 +121,8 @@ ActiveRecord::Schema.define(version: 20140614065414) do
   end
 
   add_index "items", ["condition_id"], name: "index_items_on_condition_id", using: :btree
-  add_index "items", ["post_id"], name: "index_items_on_post_id", using: :btree
+  add_index "items", ["holder_id"], name: "index_items_on_holder_id", using: :btree
+  add_index "items", ["holder_type"], name: "index_items_on_holder_type", using: :btree
   add_index "items", ["user_id"], name: "index_items_on_user_id", using: :btree
 
   create_table "items_option_values", force: true do |t|
@@ -182,16 +184,32 @@ ActiveRecord::Schema.define(version: 20140614065414) do
     t.datetime "updated_at"
   end
 
+  create_table "post_item_sales", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "post_jobs", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "posts", force: true do |t|
     t.integer  "user_id",            null: false
     t.integer  "category_id"
+    t.integer  "postable_id"
+    t.string   "postable_type"
     t.string   "title"
+    t.datetime "completed_at"
     t.integer  "contact_profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "posts", ["category_id"], name: "index_posts_on_category_id", using: :btree
+  add_index "posts", ["completed_at"], name: "index_posts_on_completed_at", using: :btree
+  add_index "posts", ["postable_id"], name: "index_posts_on_postable_id", using: :btree
+  add_index "posts", ["postable_type"], name: "index_posts_on_postable_type", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "user_contact_profiles", force: true do |t|

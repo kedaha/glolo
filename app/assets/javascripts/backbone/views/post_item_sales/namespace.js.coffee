@@ -1,0 +1,1 @@
+Glo.Views.PostItemSales ||= {}
