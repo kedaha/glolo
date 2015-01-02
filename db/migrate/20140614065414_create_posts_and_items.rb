@@ -4,9 +4,6 @@ class CreatePostsAndItems < ActiveRecord::Migration
       t.integer :user_id, null: false
       t.index :user_id
 
-      t.integer :category_id
-      t.index :category_id
-
       t.integer :postable_id
       t.index :postable_id
       t.string :postable_type
@@ -18,11 +15,6 @@ class CreatePostsAndItems < ActiveRecord::Migration
 
       t.integer :contact_profile_id
 
-      t.timestamps
-    end
-
-    create_table :post_categories do |t|
-      t.string :name
       t.timestamps
     end
 

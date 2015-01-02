@@ -1,5 +1,4 @@
 en:
-  post_category:
-    types:
-      item_sale: Sell something
-      job: Post a job
+  post_types:
+    post_item_sale: Sell something
+    post_job: Post a job

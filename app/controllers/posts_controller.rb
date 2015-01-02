@@ -3,12 +3,13 @@ class PostsController < ApplicationController
   respond_to :html, only: [:new, :edit]
 
   def new
-    @post = current_user.posts.find_by(completed_at: nil) || current_user.posts.create
+    @post = current_user.posts.find_by(completed_at: nil) || current_user.posts.build
     render :edit
   end
 
   def create
-    render json: current_user.posts.create!(post_params)
+    post = current_user.posts.create!(post_create_params)
+    render json: post.serializer
   end
 
   def edit
@@ -17,8 +18,8 @@ class PostsController < ApplicationController
 
   def update
     post = current_user.posts.find(params[:id])
-    post.update_attributes!(post_params)
-    render json: post
+    post.update_attributes(post_params)
+    render json: post.serializer
   end
 
   def destroy
@@ -28,6 +29,10 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit([:title, :contact_profile_id, :category_id])
+    params.require(:post).permit(:title, :contact_profile_id, :category_id)
+  end
+
+  def post_create_params
+    params.require(:post).permit(:type)
   end
 end

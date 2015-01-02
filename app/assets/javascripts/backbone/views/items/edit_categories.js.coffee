@@ -6,25 +6,21 @@ class Glo.Views.Items.EditCategories extends Glo.Views.Base
 
   initialize: (options) ->
     super(options)
+    @item = options.item
     @subviewsArray = []
     @categories = new Glo.Collections.ItemCategories()
     @categories.fetch
-      success: => @render()
+      success: =>
+        @render()
 
     @render()
 
   render: ->
-    super()
+    super(item: @item.attributes)
     _.each @subviewsArray, (view) => view.remove()
     @subviewsArray.length = 0
 
     _.each @categories.models, (category) =>
-      view = new Glo.Views.Posts.EditCategory(model: category)
+      view = new Glo.Views.Items.EditCategory(model: category, item: @item)
       @subviewsArray.push view
-      @$("#post-category-choices").append(view.render().$el)
-      @listenTo(category, 'postCategoryUpdated', @updatePost.bind(@))
-
-  updatePost: (categoryId) ->
-    @model.set('category_id', categoryId)
-    @model.save null,
-      success: (model) => @model.trigger('postUpdatedState')
+      @$("#item-category-choices").append(view.render().$el)

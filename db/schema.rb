@@ -178,12 +178,6 @@ ActiveRecord::Schema.define(version: 20140614065414) do
   add_index "pickup_locations_posts", ["location_id"], name: "index_pickup_locations_posts_on_location_id", using: :btree
   add_index "pickup_locations_posts", ["post_id"], name: "index_pickup_locations_posts_on_post_id", using: :btree
 
-  create_table "post_categories", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "post_item_sales", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -196,7 +190,6 @@ ActiveRecord::Schema.define(version: 20140614065414) do
 
   create_table "posts", force: true do |t|
     t.integer  "user_id",            null: false
-    t.integer  "category_id"
     t.integer  "postable_id"
     t.string   "postable_type"
     t.string   "title"
@@ -206,7 +199,6 @@ ActiveRecord::Schema.define(version: 20140614065414) do
     t.datetime "updated_at"
   end
 
-  add_index "posts", ["category_id"], name: "index_posts_on_category_id", using: :btree
   add_index "posts", ["completed_at"], name: "index_posts_on_completed_at", using: :btree
   add_index "posts", ["postable_id"], name: "index_posts_on_postable_id", using: :btree
   add_index "posts", ["postable_type"], name: "index_posts_on_postable_type", using: :btree

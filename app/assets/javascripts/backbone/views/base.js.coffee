@@ -5,6 +5,7 @@ class Glo.Views.Base extends Backbone.View
 
   render: (locals) ->
     locals ||= {}
-    locals = _.extend(@model.attributes, locals) if @model
+    locals.model = @model.toJSON() if @model
+    locals.collection = @collection.toJSON() if @collection
     @$el.html(@template(locals))
     @

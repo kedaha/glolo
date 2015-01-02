@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   end
 
   resources :posts
-  resources :post_categories, only: [:index]
+  resources :post_types, only: [:index]
+  resources :item_categories, only: [:index]
   resources :keywords, only: [] do
     collection do
       get :find_categories

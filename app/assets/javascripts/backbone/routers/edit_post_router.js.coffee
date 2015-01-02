@@ -1,30 +1,33 @@
 class Glo.Routers.EditPostRouter extends Backbone.Router
   initialize: (options) ->
-    @post = new Glo.Models.Post(options.post)
+    @post = Glo.Models.Post.Factory(options.post)
 
   routes:
-    "edit_category"   : "editCategory"
-    "edit_details"    : "editDetails"
+    "new"             : "new"
+    "edit_item_sale"  : "editItemSale"
     ""                : "edit"
 
-  editCategory: ->
-    @navigateToState(@post.defaultState()) if !@post.validAtState('category')
-    @view = new Glo.Views.Posts.Edit(el: $("#post"), model: @post)
-    @view.navigatedState = "category"
+  new: ->
+    @redirectIfNotAllowed(@post.defaultState())
+    @view = new Glo.Views.Posts.New(el: $("#post"), model: @post)
     @view.render()
 
-  editDetails: ->
-    @navigateToState(@post.defaultState()) if !@post.validAtState('details')
-    @view = new Glo.Views.Posts.Edit(el: $("#post"), model: @post)
-    @view.navigatedState = "details"
+  editItemSale: ->
+    @redirectIfNotAllowed(@post.defaultState())
+    @view = new Glo.Views.Posts.EditItemSale(el: $("#post"), model: @post)
     @view.render()
 
   edit: -> @navigateToState(@post.defaultState())
 
-  navigateToState: (state) ->
-    route = {
-      'category': 'edit_category'
-      'details' : 'edit_details'
-    }[state]
+  routeForModelState: (modelState) ->
+    {
+      'category'        : 'new'
+      'post_item_sale'  : 'edit_item_sale'
+    }[modelState]
 
-    @navigate(route, {trigger: true})
+  navigateToState: (state) ->
+    @navigate(@routeForModelState(state), {trigger: true})
+
+  redirectIfNotAllowed: (modelState) ->
+    if @routeForModelState(modelState) != Backbone.history.fragment
+      @navigateToState(modelState)

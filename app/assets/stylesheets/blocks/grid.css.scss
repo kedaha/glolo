@@ -1,0 +1,16 @@
+.grid {
+  @include outer-container;
+}
+
+.grid--row {
+  @include span-columns(12 of 12);
+  @include omega();
+}
+
+.grid--row-item-6 {
+  @include span-columns(6 of 12);
+}
+
+.grid--row-item-last {
+  @include omega();
+}

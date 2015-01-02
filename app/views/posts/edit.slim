@@ -7,6 +7,6 @@
 
   javascript:
     $(function() {
-      Glo.router = new Glo.Routers.EditPostRouter({post: #{json_for @post}});
+      Glo.router = new Glo.Routers.EditPostRouter({post: #{@post.serializer.to_json.html_safe}});
       Backbone.history.start();
     });

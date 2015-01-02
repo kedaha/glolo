@@ -1,4 +1,19 @@
-<div class="pick-list">
-  <h3 class="pick-list--title">Pick a Item Category</h3>
-  <div id="item-category-choices"></div>
+<div class="grid">
+  <div class="grid--row">
+      <div class="grid--row-item-6">
+      <div class="pick-list">
+        <h3 class="pick-list--title">Pick a Item Category</h3>
+        <div id="item-category-choices"></div>
+      </div>
+    </div>
+
+    <div class="grid--row-item-6">
+      <div>You've already picked these categories</div>
+      <% _.each(item.categories, function(category) { %>
+        <div><%= category.get('presentation') %></div>
+      <% }) %>
+    </div>
+  </div>
 </div>
+
+

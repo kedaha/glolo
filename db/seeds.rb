@@ -1,4 +1,3 @@
-post_categories = PostCategory::ACCEPTABLE_NAMES
 item_categories = {
   "furniture" => %w(furniture desks couches sofas chairs tables bookshelf shelf shelves armoire benches beds mattresses nightstand night stand),
   "appliances" => %w(appliances refrigerators freezers ovens washers dryers microwaves blenders juicers),
@@ -14,17 +13,11 @@ ActiveRecord::Base.transaction do
   Keyword.delete_all
   ItemCategoriesKeyword.delete_all
 
-  PostCategory.delete_all
-
   item_categories.each do |category_name, keyword_names|
     c = ItemCategory.create!(name: category_name)
     keyword_names.each do |keyword_name|
       c.strengthen_or_add_keyword!(keyword_name)
     end
     c.save!
-  end
-
-  post_categories.each do |category_name|
-    PostCategory.create!(name: category_name)
   end
 end

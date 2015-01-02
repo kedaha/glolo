@@ -6,12 +6,12 @@ class Glo.Models.Item extends Glo.Models.Base
     {
       type: Backbone.Many
       key: "categories"
-      # relatedModel: Glo.Models.ItemCategory
       collectionType: "Glo.Collections.ItemCategories"
     }
   ]
 
   defaults:
+    id: null
     user_id: null
     holder_id: null
     holder_type: null
@@ -25,7 +25,7 @@ class Glo.Models.Item extends Glo.Models.Base
     why_selling: null
     any_defects: null
     condition_id: null
-    item_categories: null
+    categories: []
 
 class Glo.Collections.Items extends Backbone.Collection
   model: Glo.Models.Item

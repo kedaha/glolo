@@ -1,28 +1,22 @@
 class Post < ActiveRecord::Base
   belongs_to :user
-  belongs_to :category, class_name: 'PostCategory'
   belongs_to :postable, polymorphic: true
 
-  validates :user, presence: true
-  validate :category_unchanged
-  before_save :build_postable
+  validates :user, :type, presence: true
 
   def type
-    category.try :name
+    postable.class.to_s.underscore if postable
   end
 
-  private
-
-  def category_unchanged
-    if changes[:category_id] && changes[:category_id][0] != nil
-      errors.add :category_id, "cannot be changed"
+  def type=(val)
+    if postable.nil?
+      self.postable = PostType.from_enum(val).create!
     end
   end
 
-  def build_postable(*args)
-    if category.present? && postable_id.nil?
-      postable = category.postable_class.create!(*args)
-      self.postable = postable
-    end
+  def serializer(options = {})
+    type = postable_type || "Generic"
+    options[:scope] ||= self
+    "PostSerializer::#{type}".constantize.new(self, options)
   end
 end
