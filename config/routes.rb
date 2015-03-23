@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   ## auth/:provider
   ## callback url is /auth/:provider/callback
   ## auth/google_oauth2
+  root to: "sessions#new"
 
   resources :users, only: [:show, :index] do
     resources :registrations, only: [:new]
